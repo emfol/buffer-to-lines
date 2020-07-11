@@ -116,4 +116,38 @@ describe('bufferToLines', () => {
         ]);
     });
 
+    it('should support completely empty lines', () => {
+        let buffer = Buffer.allocUnsafe(256);
+        let string = '\n\nThe end...';
+        let remainder = 'The end...';
+        let size = buffer.write(string, 'utf8');
+        let lines = [];
+
+        expect(size).toBe(string.length);
+        expect(bufferToLines(buffer, size, 'utf8', lines)).toBe(remainder.length);
+        expect(lines).toStrictEqual([
+            '',
+            ''
+        ]);
+        expect(buffer.toString('utf8', 0, remainder.length)).toBe(remainder);
+    });
+
+    it('should support mixed line ending formats', () => {
+        let buffer = Buffer.allocUnsafe(256);
+        let string = '\n\r\nFoo!\nBar!\r\nThe end...';
+        let remainder = 'The end...';
+        let size = buffer.write(string, 'utf8');
+        let lines = [];
+
+        expect(size).toBe(string.length);
+        expect(bufferToLines(buffer, size, 'utf8', lines)).toBe(remainder.length);
+        expect(lines).toStrictEqual([
+            '',
+            '',
+            'Foo!',
+            'Bar!',
+        ]);
+        expect(buffer.toString('utf8', 0, remainder.length)).toBe(remainder);
+    });
+
 });
