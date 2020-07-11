@@ -4,7 +4,7 @@
   "description": "The logic necessary to extract lines from a buffer",
   "main": "buffer-to-lines.js",
   "scripts": {
-    "test": "jest",
+    "test": "jest --coverage",
     "lint": "eslint"
   },
   "repository": {
