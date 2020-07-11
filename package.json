@@ -7,6 +7,10 @@
     "test": "jest",
     "lint": "eslint"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/emfol/buffer-to-lines"
+  },
   "author": "Emanuel F. Oliveira",
   "license": "ISC",
   "devDependencies": {
