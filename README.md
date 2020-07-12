@@ -4,8 +4,6 @@ The logic necessary to extract lines from a buffer.
 
 ## Installation
 
-Use the package manager [pip](https://pip.pypa.io/en/stable/) to install foobar.
-
 ```bash
 npm install --save buffer-to-lines
 ```

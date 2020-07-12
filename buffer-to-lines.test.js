@@ -150,4 +150,16 @@ describe('bufferToLines', () => {
         expect(buffer.toString('utf8', 0, remainder.length)).toBe(remainder);
     });
 
+    it('should not create lines when there is no line break in the buffer', () => {
+        let buffer = Buffer.allocUnsafe(256);
+        let string = 'The journey of a thousand miles begins with one step.';
+        let size = buffer.write(string, 'utf8');
+        let lines = [];
+
+        expect(size).toBe(string.length);
+        expect(bufferToLines(buffer, size, 'utf8', lines)).toBe(size);
+        expect(lines).toStrictEqual([]);
+        expect(buffer.toString('utf8', 0, size)).toBe(string);
+    });
+
 });
